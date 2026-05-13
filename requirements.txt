@@ -1,16 +1,5 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-
-def main_kb():
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text="🔍 Найти"),
-                KeyboardButton(text="🛑 Стоп")
-            ],
-            [
-                KeyboardButton(text="👤 Профиль"),
-                KeyboardButton(text="👑 Premium")
-            ]
-        ],
-        resize_keyboard=True
-    )
+aiogram==3.4.1
+sqlalchemy==2.0.25
+asyncpg==0.29.0
+redis==5.0.1
+python-dotenv==1.0.0
