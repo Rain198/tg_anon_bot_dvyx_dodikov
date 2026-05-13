@@ -564,4 +564,3 @@ def relay_photo(msg):
 print("Bot started...")
 
 bot.infinity_polling(timeout=30, long_polling_timeout=30)
-```
