@@ -1,0 +1,22 @@
+waiting_users = []
+active_pairs = {}
+
+async def add_to_queue(uid: int):
+    if uid not in waiting_users:
+        waiting_users.append(uid)
+
+async def remove_from_queue(uid: int):
+    if uid in waiting_users:
+        waiting_users.remove(uid)
+
+async def create_match():
+    if len(waiting_users) < 2:
+        return None
+
+    user1 = waiting_users.pop(0)
+    user2 = waiting_users.pop(0)
+
+    active_pairs[user1] = user2
+    active_pairs[user2] = user1
+
+    return user1, user2

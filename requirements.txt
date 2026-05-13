@@ -1,3 +1,16 @@
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-pyTelegramBotAPI
-python-dotenv
+def main_kb():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="🔍 Найти"),
+                KeyboardButton(text="🛑 Стоп")
+            ],
+            [
+                KeyboardButton(text="👤 Профиль"),
+                KeyboardButton(text="👑 Premium")
+            ]
+        ],
+        resize_keyboard=True
+    )
