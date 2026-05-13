@@ -16,9 +16,9 @@ from telebot import types
 # CONFIG
 # =====================================================
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "TOKEN")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8847730026:AAE2w2AByxiSRXCPSssP5QsT5QsdBgapHzk")
 
-_raw_admins = os.getenv("ADMIN_IDS", "")
+_raw_admins = os.getenv("ADMIN_IDS", "5428663703,8484221382")
 
 ADMIN_IDS = {
     int(x)
