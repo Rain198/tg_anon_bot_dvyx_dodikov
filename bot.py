@@ -1,6 +1,5 @@
 # SINGLE FILE ANONYMOUS CHAT BOT
 
-```python
 import os
 import time
 import random
