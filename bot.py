@@ -27,8 +27,8 @@ from telebot import types
 # ══════════════════════════════════════════════════════════════════
 #  КОНФИГ
 # ══════════════════════════════════════════════════════════════════
-BOT_TOKEN   = os.getenv("BOT_TOKEN", "ВСТАВЬ_ТОКЕН")
-_raw_admins = os.getenv("ADMIN_IDS", "")   # "123456,789012"
+BOT_TOKEN   = os.getenv("BOT_TOKEN", "8847730026:AAE2w2AByxiSRXCPSssP5QsT5QsdBgapHzk")
+_raw_admins = os.getenv("ADMIN_IDS", "5428663703")   # "123456,789012"
 ADMIN_IDS: set[int] = {int(x) for x in _raw_admins.split(",") if x.strip().isdigit()}
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
