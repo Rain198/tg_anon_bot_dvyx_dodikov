@@ -1,15 +1,11 @@
-import time
+FROM python:3.11
 
-last_messages = {}
+WORKDIR /app
 
-def check_spam(uid: int):
-    now = time.time()
+COPY requirements.txt .
 
-    last = last_messages.get(uid, 0)
+RUN pip install -r requirements.txt
 
-    if now - last < 0.7:
-        return False
+COPY . .
 
-    last_messages[uid] = now
-
-    return True
+CMD ["python", "main.py"]
