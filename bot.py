@@ -21,7 +21,7 @@ import telebot
 from telebot import types
 
 # ─── Настройки ────────────────────────────────────────────────────────────────
-BOT_TOKEN = os.getenv("BOT_TOKEN", "ВСТАВЬ_СЮДА_СВОЙ_ТОКЕН")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8847730026:AAE2w2AByxiSRXCPSssP5QsT5QsdBgapHzk")
 
 logging.basicConfig(
     level=logging.INFO,
