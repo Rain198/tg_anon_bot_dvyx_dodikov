@@ -1,15 +1,38 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+import asyncio
+import logging
+
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+from aiogram.client.default import DefaultBotProperties
+
 from app.config import settings
+from app.database.session import init_db
+from app.handlers import admin, callbacks, chat, profile, start
+from app.middlewares.throttling import ThrottlingMiddleware
 
-DATABASE_URL = (
-    f"postgresql+asyncpg://"
-    f"{settings.POSTGRES_USER}:"
-    f"{settings.POSTGRES_PASSWORD}@"
-    f"{settings.POSTGRES_HOST}:"
-    f"{settings.POSTGRES_PORT}/"
-    f"{settings.POSTGRES_DB}"
-)
 
-engine = create_async_engine(DATABASE_URL)
+async def main() -> None:
+    logging.basicConfig(level=settings.LOG_LEVEL)
 
-async_session = async_sessionmaker(engine, expire_on_commit=False)
+    await init_db()
+
+    bot = Bot(
+        token=settings.BOT_TOKEN,
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+    )
+    dp = Dispatcher()
+    dp.message.middleware(ThrottlingMiddleware())
+
+    dp.include_routers(
+        start.router,
+        profile.router,
+        chat.router,
+        callbacks.router,
+        admin.router,
+    )
+
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

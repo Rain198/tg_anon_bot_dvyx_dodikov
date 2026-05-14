@@ -1,22 +1,26 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import BigInteger, Integer, String, Boolean
+# Anonymous Chat Bot
 
-class Base(DeclarativeBase):
-    pass
+Telegram anonymous chat bot for Railway.
 
-class User(Base):
-    __tablename__ = "users"
+## Railway variables
 
-    uid: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+Set these variables in Railway:
 
-    gender: Mapped[str] = mapped_column(String(20), default="")
+```bash
+BOT_TOKEN=your_botfather_token
+ADMIN_IDS=123456789,987654321
+```
 
-    age: Mapped[int] = mapped_column(Integer, default=0)
+`ADMIN_IDS` is optional. Do not commit real bot tokens to GitHub.
 
-    language: Mapped[str] = mapped_column(String(5), default="ru")
+## Run locally
 
-    reputation: Mapped[int] = mapped_column(Integer, default=100)
+```bash
+pip install -r requirements.txt
+BOT_TOKEN=your_botfather_token python main.py
+```
 
-    premium: Mapped[bool] = mapped_column(Boolean, default=False)
+## Deploy
 
-    banned: Mapped[bool] = mapped_column(Boolean, default=False)
+Railway uses the included `Dockerfile`.
+

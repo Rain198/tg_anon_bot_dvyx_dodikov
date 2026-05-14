@@ -1,22 +1,27 @@
-waiting_users = []
-active_pairs = {}
+services:
+  bot:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
 
-async def add_to_queue(uid: int):
-    if uid not in waiting_users:
-        waiting_users.append(uid)
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tg_anon
+      POSTGRES_USER: tg_anon
+      POSTGRES_PASSWORD: tg_anon
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
-async def remove_from_queue(uid: int):
-    if uid in waiting_users:
-        waiting_users.remove(uid)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
 
-async def create_match():
-    if len(waiting_users) < 2:
-        return None
-
-    user1 = waiting_users.pop(0)
-    user2 = waiting_users.pop(0)
-
-    active_pairs[user1] = user2
-    active_pairs[user2] = user1
-
-    return user1, user2
+volumes:
+  postgres_data:
